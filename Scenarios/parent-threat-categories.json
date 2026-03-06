@@ -1,0 +1,1090 @@
+{
+  "metadata": {
+    "title": "Cyber Threat Taxonomy // 2026 Threat Landscape",
+    "version": "1.0",
+    "published": "2026-03-04",
+    "author": "jasonlayton.com"
+    "notes": "Common attack stages are mapped to MITRE ATT&CK Enterprise tactics. Resource Development (TA0042) has been omitted as it does not involve active engagement with a victim network or system."
+  },
+  "threat_categories": [
+    {
+      "id": "cat-001",
+      "name": "Phishing & Social Engineering",
+      "description": "Deceptive communications (email, SMS, voice, social media) used to manipulate users into disclosing credentials, approving MFA prompts, transferring funds, or executing malware. Includes spear phishing, smishing, vishing, and AI-generated impersonation.",
+      "common-attack-stages": [
+        {
+          "tactic": "Reconnaissance",
+          "tactic_id": "TA0043",
+          "context": "Harvesting target email addresses, organisational structure, and personal information to craft convincing lures."
+        },
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Delivering phishing payloads or credential harvesting links via email, SMS, voice, or social media channels."
+        },
+        {
+          "tactic": "Execution",
+          "tactic_id": "TA0002",
+          "context": "Victim executes malicious attachment, macro, or script triggered by the phishing lure."
+        },
+        {
+          "tactic": "Credential Access",
+          "tactic_id": "TA0006",
+          "context": "Capturing credentials through fake login portals, MFA prompt bombing, or token theft."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Using legitimate cloud services for payload hosting, HTML smuggling, or obfuscated links to bypass email security controls."
+        },
+        {
+          "tactic": "Command and Control",
+          "tactic_id": "TA0011",
+          "context": "Establishing C2 channels following successful payload execution to maintain remote access."
+        }
+      ]
+    },
+    {
+      "id": "cat-002",
+      "name": "Business Email Compromise (BEC)",
+      "description": "Targeted impersonation of executives, vendors, or partners to induce fraudulent payments or sensitive data disclosure. Often involves mailbox takeover and persistence within M365/Google Workspace.",
+      "common-attack-stages": [
+        {
+          "tactic": "Reconnaissance",
+          "tactic_id": "TA0043",
+          "context": "Researching organisational hierarchy, vendor relationships, payment processes, and executive communication styles."
+        },
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Gaining access to a legitimate mailbox via credential phishing, password spraying, or token theft."
+        },
+        {
+          "tactic": "Persistence",
+          "tactic_id": "TA0003",
+          "context": "Creating mailbox rules to redirect or hide emails, registering rogue OAuth applications, or adding MFA devices for sustained access."
+        },
+        {
+          "tactic": "Credential Access",
+          "tactic_id": "TA0006",
+          "context": "Harvesting additional credentials or tokens from the compromised mailbox environment."
+        },
+        {
+          "tactic": "Collection",
+          "tactic_id": "TA0009",
+          "context": "Monitoring email threads, collecting invoice templates, and gathering financial and contact information to support impersonation."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Using inbox rules to conceal attacker activity, spoofing display names, and leveraging legitimate mail infrastructure."
+        },
+        {
+          "tactic": "Impact",
+          "tactic_id": "TA0040",
+          "context": "Initiating fraudulent wire transfers, redirecting payments to attacker-controlled accounts, or exfiltrating sensitive data."
+        }
+      ]
+    },
+    {
+      "id": "cat-003",
+      "name": "Credential Theft & Identity Attacks",
+      "description": "Theft, harvesting, cracking, or replay of authentication material (passwords, tokens, cookies, API keys). Includes MFA fatigue attacks, session hijacking, OAuth abuse, and pass-the-cookie/token replay.",
+      "common-attack-stages": [
+        {
+          "tactic": "Reconnaissance",
+          "tactic_id": "TA0043",
+          "context": "Identifying authentication mechanisms, exposed login portals, and credential leak sources."
+        },
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Using brute force, password spraying, or stolen credentials from dark web marketplaces to gain initial foothold."
+        },
+        {
+          "tactic": "Credential Access",
+          "tactic_id": "TA0006",
+          "context": "Dumping credentials, extracting tokens and cookies, Kerberoasting, AS-REP roasting, or replaying captured session material."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Using valid credentials to blend with legitimate activity, bypassing MFA via token replay or fatigue attacks."
+        },
+        {
+          "tactic": "Privilege Escalation",
+          "tactic_id": "TA0004",
+          "context": "Leveraging stolen privileged credentials or tokens to escalate access within the environment."
+        },
+        {
+          "tactic": "Lateral Movement",
+          "tactic_id": "TA0008",
+          "context": "Using harvested credentials and tokens to move across systems and services within the target environment."
+        }
+      ]
+    },
+    {
+      "id": "cat-004",
+      "name": "Ransomware",
+      "description": "Malware used to encrypt systems and/or exfiltrate data for extortion. Modern variants employ double or triple extortion (encryption + leak site + DDoS). Often delivered via initial access brokers (IABs).",
+      "common-attack-stages": [
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Entry via phishing, exploitation of internet-facing services, or access purchased from initial access brokers."
+        },
+        {
+          "tactic": "Execution",
+          "tactic_id": "TA0002",
+          "context": "Deploying ransomware payloads, loaders, and staging tools on compromised hosts."
+        },
+        {
+          "tactic": "Persistence",
+          "tactic_id": "TA0003",
+          "context": "Installing backdoors and establishing fallback access to maintain presence during the operation."
+        },
+        {
+          "tactic": "Privilege Escalation",
+          "tactic_id": "TA0004",
+          "context": "Escalating to domain admin or equivalent privileges to enable widespread deployment."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Disabling EDR/AV, deleting shadow copies, and using legitimate tools to avoid detection."
+        },
+        {
+          "tactic": "Credential Access",
+          "tactic_id": "TA0006",
+          "context": "Dumping credentials to facilitate lateral movement and access to high-value targets."
+        },
+        {
+          "tactic": "Discovery",
+          "tactic_id": "TA0007",
+          "context": "Enumerating Active Directory, network shares, backup systems, and critical business assets."
+        },
+        {
+          "tactic": "Lateral Movement",
+          "tactic_id": "TA0008",
+          "context": "Spreading across the environment to maximise the blast radius of encryption."
+        },
+        {
+          "tactic": "Collection",
+          "tactic_id": "TA0009",
+          "context": "Staging sensitive data for exfiltration prior to encryption (double extortion)."
+        },
+        {
+          "tactic": "Exfiltration",
+          "tactic_id": "TA0010",
+          "context": "Transferring stolen data to attacker infrastructure for use in extortion."
+        },
+        {
+          "tactic": "Command and Control",
+          "tactic_id": "TA0011",
+          "context": "Maintaining C2 channels for operator-directed deployment and coordination."
+        },
+        {
+          "tactic": "Impact",
+          "tactic_id": "TA0040",
+          "context": "Encrypting systems, destroying backups, and issuing ransom demands via leak sites."
+        }
+      ]
+    },
+    {
+      "id": "cat-005",
+      "name": "Data Extortion (Unencrypted)",
+      "description": "Theft of sensitive data without encryption, followed by extortion threats to publish or sell the data. Increasingly common due to faster execution and lower operational overhead than ransomware.",
+      "common-attack-stages": [
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Gaining entry via credential theft, exploitation, or purchased access."
+        },
+        {
+          "tactic": "Discovery",
+          "tactic_id": "TA0007",
+          "context": "Identifying high-value data repositories, databases, and file shares containing sensitive information."
+        },
+        {
+          "tactic": "Collection",
+          "tactic_id": "TA0009",
+          "context": "Aggregating and staging targeted data for extraction."
+        },
+        {
+          "tactic": "Exfiltration",
+          "tactic_id": "TA0010",
+          "context": "Transferring stolen data to attacker-controlled infrastructure, often using cloud storage services or encrypted channels."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Using legitimate tools and encrypted channels to avoid triggering DLP or network monitoring controls."
+        },
+        {
+          "tactic": "Impact",
+          "tactic_id": "TA0040",
+          "context": "Threatening to publish or sell stolen data unless extortion demands are met."
+        }
+      ]
+    },
+    {
+      "id": "cat-006",
+      "name": "Supply Chain Compromise",
+      "description": "Compromise of software vendors, SaaS providers, MSPs, CI/CD pipelines, or open-source dependencies to gain indirect access to downstream victims. Includes malicious code injection and trusted update abuse.",
+      "common-attack-stages": [
+        {
+          "tactic": "Reconnaissance",
+          "tactic_id": "TA0043",
+          "context": "Identifying target supply chain relationships, software dependencies, and build pipeline infrastructure."
+        },
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Compromising a vendor, SaaS provider, or open-source package to inject malicious code into trusted software distribution channels."
+        },
+        {
+          "tactic": "Execution",
+          "tactic_id": "TA0002",
+          "context": "Malicious code executes on downstream victim systems through trusted software updates or dependency imports."
+        },
+        {
+          "tactic": "Persistence",
+          "tactic_id": "TA0003",
+          "context": "Establishing persistent access within victim environments via backdoored software components."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Leveraging digitally signed, trusted software to bypass security controls and whitelisting policies."
+        },
+        {
+          "tactic": "Collection",
+          "tactic_id": "TA0009",
+          "context": "Harvesting credentials, configuration data, and sensitive information from compromised downstream environments."
+        },
+        {
+          "tactic": "Command and Control",
+          "tactic_id": "TA0011",
+          "context": "Using supply chain implants to establish covert C2 channels within victim networks."
+        }
+      ]
+    },
+    {
+      "id": "cat-007",
+      "name": "Cloud Environment Intrusion",
+      "description": "Exploitation of misconfigurations, exposed APIs, over-privileged IAM roles, or stolen cloud tokens to access IaaS/PaaS/SaaS environments. Often involves living-off-the-land abuse of native cloud services.",
+      "common-attack-stages": [
+        {
+          "tactic": "Reconnaissance",
+          "tactic_id": "TA0043",
+          "context": "Scanning for exposed cloud storage, misconfigured APIs, and publicly accessible cloud management consoles."
+        },
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Exploiting misconfigured IAM policies, exposed API keys, or stolen cloud tokens to gain access."
+        },
+        {
+          "tactic": "Privilege Escalation",
+          "tactic_id": "TA0004",
+          "context": "Exploiting over-permissive IAM roles, role chaining, or instance metadata services to escalate privileges."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Disabling cloud logging, using native cloud services to blend with normal operations, and modifying security group rules."
+        },
+        {
+          "tactic": "Credential Access",
+          "tactic_id": "TA0006",
+          "context": "Extracting secrets from instance metadata, key vaults, or environment variables."
+        },
+        {
+          "tactic": "Discovery",
+          "tactic_id": "TA0007",
+          "context": "Enumerating cloud resources, subscriptions, storage accounts, and cross-account trust relationships."
+        },
+        {
+          "tactic": "Lateral Movement",
+          "tactic_id": "TA0008",
+          "context": "Pivoting across cloud accounts, subscriptions, or tenants using compromised roles and trust relationships."
+        },
+        {
+          "tactic": "Exfiltration",
+          "tactic_id": "TA0010",
+          "context": "Exfiltrating data via cloud storage services, snapshots, or cross-account sharing."
+        }
+      ]
+    },
+    {
+      "id": "cat-008",
+      "name": "API Abuse & Exploitation",
+      "description": "Targeting insecure or poorly authenticated APIs to extract data, bypass controls, perform business logic abuse, or escalate privileges. Increasingly relevant in SaaS and fintech environments.",
+      "common-attack-stages": [
+        {
+          "tactic": "Reconnaissance",
+          "tactic_id": "TA0043",
+          "context": "Discovering exposed API endpoints, reviewing API documentation, and identifying authentication weaknesses."
+        },
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Exploiting broken authentication, insecure API keys, or exposed endpoints to gain unauthorised access."
+        },
+        {
+          "tactic": "Credential Access",
+          "tactic_id": "TA0006",
+          "context": "Extracting API keys, tokens, or session identifiers through API enumeration or injection flaws."
+        },
+        {
+          "tactic": "Privilege Escalation",
+          "tactic_id": "TA0004",
+          "context": "Exploiting broken object-level or function-level authorisation to access privileged API functions."
+        },
+        {
+          "tactic": "Collection",
+          "tactic_id": "TA0009",
+          "context": "Mass-harvesting data through insecure direct object references or excessive data exposure in API responses."
+        },
+        {
+          "tactic": "Exfiltration",
+          "tactic_id": "TA0010",
+          "context": "Extracting sensitive data at scale through repeated API calls or batch export functions."
+        }
+      ]
+    },
+    {
+      "id": "cat-009",
+      "name": "Zero-Day Exploitation",
+      "description": "Use of previously unknown vulnerabilities to achieve initial access or privilege escalation. Often weaponised rapidly against internet-facing appliances (VPNs, firewalls, hypervisors).",
+      "common-attack-stages": [
+        {
+          "tactic": "Reconnaissance",
+          "tactic_id": "TA0043",
+          "context": "Identifying target technology stacks, firmware versions, and internet-facing appliances to select exploitable targets."
+        },
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Exploiting the zero-day vulnerability to gain unauthorised access to the target system or network."
+        },
+        {
+          "tactic": "Execution",
+          "tactic_id": "TA0002",
+          "context": "Executing arbitrary code on the compromised system via the exploited vulnerability."
+        },
+        {
+          "tactic": "Privilege Escalation",
+          "tactic_id": "TA0004",
+          "context": "Leveraging the exploit to gain elevated privileges, often to root or SYSTEM level on the target appliance."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Exploiting unknown vulnerabilities inherently evades signature-based detection; attackers may also tamper with device logs."
+        },
+        {
+          "tactic": "Persistence",
+          "tactic_id": "TA0003",
+          "context": "Deploying implants or web shells on compromised appliances to maintain access beyond initial exploitation."
+        },
+        {
+          "tactic": "Command and Control",
+          "tactic_id": "TA0011",
+          "context": "Establishing covert communication channels from compromised edge devices back to attacker infrastructure."
+        }
+      ]
+    },
+    {
+      "id": "cat-010",
+      "name": "N-Day Vulnerability Exploitation",
+      "description": "Exploitation of known but unpatched vulnerabilities. Frequently automated at scale against exposed services.",
+      "common-attack-stages": [
+        {
+          "tactic": "Reconnaissance",
+          "tactic_id": "TA0043",
+          "context": "Scanning the internet for services running vulnerable versions using mass scanning tools and Shodan/Censys."
+        },
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Exploiting known vulnerabilities with publicly available exploit code against unpatched targets."
+        },
+        {
+          "tactic": "Execution",
+          "tactic_id": "TA0002",
+          "context": "Executing payloads on compromised systems, often automated via exploitation frameworks."
+        },
+        {
+          "tactic": "Privilege Escalation",
+          "tactic_id": "TA0004",
+          "context": "Using known privilege escalation CVEs to elevate access on compromised hosts."
+        },
+        {
+          "tactic": "Persistence",
+          "tactic_id": "TA0003",
+          "context": "Deploying web shells, backdoors, or scheduled tasks to maintain access."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Modifying exploit techniques to bypass IDS/IPS signatures and patching detection gaps."
+        }
+      ]
+    },
+    {
+      "id": "cat-011",
+      "name": "Initial Access Broker Activity",
+      "description": "Specialised actors who gain footholds (via phishing, exploits, RDP brute force) and sell access to ransomware or espionage groups. Key enabler in modern criminal ecosystems.",
+      "common-attack-stages": [
+        {
+          "tactic": "Reconnaissance",
+          "tactic_id": "TA0043",
+          "context": "Scanning for exposed RDP, VPN, and remote access services; identifying weak or reused credentials."
+        },
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Gaining footholds via brute force, credential stuffing, phishing, or exploitation of internet-facing services."
+        },
+        {
+          "tactic": "Credential Access",
+          "tactic_id": "TA0006",
+          "context": "Harvesting valid credentials and access tokens to package for resale."
+        },
+        {
+          "tactic": "Persistence",
+          "tactic_id": "TA0003",
+          "context": "Establishing durable access (backdoors, VPN accounts, web shells) that can be reliably handed off to buyers."
+        },
+        {
+          "tactic": "Discovery",
+          "tactic_id": "TA0007",
+          "context": "Performing basic enumeration to characterise the compromised environment and determine sale value."
+        }
+      ]
+    },
+    {
+      "id": "cat-012",
+      "name": "Living-off-the-Land (LOTL) Techniques",
+      "description": "Abuse of legitimate system tools (PowerShell, WMI, Azure CLI, AWS CLI, PsExec) to evade detection and blend with normal operations. Common in post-compromise phases.",
+      "common-attack-stages": [
+        {
+          "tactic": "Execution",
+          "tactic_id": "TA0002",
+          "context": "Using native OS tools and scripting interpreters (PowerShell, WMI, Bash) for malicious execution."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Blending with legitimate administrative activity by using signed, trusted binaries and native cloud CLIs."
+        },
+        {
+          "tactic": "Persistence",
+          "tactic_id": "TA0003",
+          "context": "Abusing scheduled tasks, registry run keys, or cloud automation features for persistent access."
+        },
+        {
+          "tactic": "Discovery",
+          "tactic_id": "TA0007",
+          "context": "Leveraging built-in tools (net, nltest, dsquery, cloud CLI) to enumerate the environment without deploying custom tooling."
+        },
+        {
+          "tactic": "Lateral Movement",
+          "tactic_id": "TA0008",
+          "context": "Using PsExec, WinRM, SSH, or cloud management APIs to move laterally using legitimate protocols."
+        },
+        {
+          "tactic": "Collection",
+          "tactic_id": "TA0009",
+          "context": "Using native file management and compression tools to stage data for exfiltration."
+        }
+      ]
+    },
+    {
+      "id": "cat-013",
+      "name": "Advanced Persistent Threat (APT) Operations",
+      "description": "Long-term, covert campaigns typically linked to nation-states, focused on espionage, intellectual property theft, or strategic disruption. Characterised by stealth and persistence.",
+      "common-attack-stages": [
+        {
+          "tactic": "Reconnaissance",
+          "tactic_id": "TA0043",
+          "context": "Extensive pre-compromise intelligence gathering on target organisations, personnel, and technology stacks."
+        },
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Targeted spear phishing, zero-day exploitation, supply chain compromise, or watering hole attacks."
+        },
+        {
+          "tactic": "Execution",
+          "tactic_id": "TA0002",
+          "context": "Deploying custom malware, implants, and modular frameworks tailored to the target environment."
+        },
+        {
+          "tactic": "Persistence",
+          "tactic_id": "TA0003",
+          "context": "Establishing multiple, redundant persistence mechanisms including firmware implants and covert scheduled tasks."
+        },
+        {
+          "tactic": "Privilege Escalation",
+          "tactic_id": "TA0004",
+          "context": "Exploiting local vulnerabilities or abusing trust relationships to achieve domain-wide or cloud-wide administrative access."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Employing custom tooling, code signing, LOTL techniques, and counter-forensics to maintain stealth over extended periods."
+        },
+        {
+          "tactic": "Credential Access",
+          "tactic_id": "TA0006",
+          "context": "Targeting credential stores, Kerberos infrastructure, and cloud identity providers for long-term access."
+        },
+        {
+          "tactic": "Discovery",
+          "tactic_id": "TA0007",
+          "context": "Methodical and low-tempo enumeration of high-value assets, network topology, and data repositories."
+        },
+        {
+          "tactic": "Lateral Movement",
+          "tactic_id": "TA0008",
+          "context": "Moving through the environment using compromised credentials, RDP, SMB, and cloud trust relationships."
+        },
+        {
+          "tactic": "Collection",
+          "tactic_id": "TA0009",
+          "context": "Systematically identifying and staging targeted intelligence, IP, and strategic data."
+        },
+        {
+          "tactic": "Exfiltration",
+          "tactic_id": "TA0010",
+          "context": "Exfiltrating data through covert channels, encrypted tunnels, or cloud storage services over extended timeframes."
+        },
+        {
+          "tactic": "Command and Control",
+          "tactic_id": "TA0011",
+          "context": "Maintaining resilient, multi-layered C2 infrastructure with domain fronting, encrypted protocols, and failover mechanisms."
+        }
+      ]
+    },
+    {
+      "id": "cat-014",
+      "name": "Cyber Espionage",
+      "description": "Targeted theft of sensitive government, defence, commercial, or research data for strategic advantage. May leverage zero-days and supply chain compromise.",
+      "common-attack-stages": [
+        {
+          "tactic": "Reconnaissance",
+          "tactic_id": "TA0043",
+          "context": "Identifying high-value intelligence targets, personnel with access to classified or sensitive data, and technical infrastructure."
+        },
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Gaining entry through targeted phishing, zero-day exploitation, or compromised trusted relationships."
+        },
+        {
+          "tactic": "Persistence",
+          "tactic_id": "TA0003",
+          "context": "Establishing long-term covert access through implants, backdoors, and compromised identity infrastructure."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Using advanced anti-forensics, encrypted communications, and LOTL techniques to avoid detection."
+        },
+        {
+          "tactic": "Discovery",
+          "tactic_id": "TA0007",
+          "context": "Carefully mapping network resources, file shares, and databases containing targeted intelligence."
+        },
+        {
+          "tactic": "Collection",
+          "tactic_id": "TA0009",
+          "context": "Systematically harvesting documents, communications, research data, and strategic information."
+        },
+        {
+          "tactic": "Exfiltration",
+          "tactic_id": "TA0010",
+          "context": "Exfiltrating stolen intelligence through covert channels, often over extended periods to avoid detection."
+        },
+        {
+          "tactic": "Command and Control",
+          "tactic_id": "TA0011",
+          "context": "Operating resilient C2 infrastructure designed for stealth and long-term operational security."
+        }
+      ]
+    },
+    {
+      "id": "cat-015",
+      "name": "Distributed Denial of Service (DDoS)",
+      "description": "Flooding services with traffic to degrade or disrupt availability. Includes volumetric, application-layer, and extortion-based DDoS. Often combined with other attacks.",
+      "common-attack-stages": [
+        {
+          "tactic": "Reconnaissance",
+          "tactic_id": "TA0043",
+          "context": "Identifying target infrastructure, IP ranges, and services to determine the most effective attack vectors."
+        },
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Compromising IoT devices, servers, and cloud instances to build or rent botnet infrastructure for the attack."
+        },
+        {
+          "tactic": "Command and Control",
+          "tactic_id": "TA0011",
+          "context": "Coordinating botnet nodes to synchronise attack traffic against target infrastructure."
+        },
+        {
+          "tactic": "Impact",
+          "tactic_id": "TA0040",
+          "context": "Overwhelming target services with volumetric or application-layer traffic to cause service degradation or outage."
+        }
+      ]
+    },
+    {
+      "id": "cat-016",
+      "name": "Insider Threat",
+      "description": "Malicious or negligent actions by employees, contractors, or partners that result in data theft, sabotage, or exposure. Includes privilege abuse and data exfiltration.",
+      "common-attack-stages": [
+        {
+          "tactic": "Discovery",
+          "tactic_id": "TA0007",
+          "context": "Leveraging legitimate access to identify sensitive data repositories, systems, and processes."
+        },
+        {
+          "tactic": "Collection",
+          "tactic_id": "TA0009",
+          "context": "Accumulating sensitive data using authorised access, often over an extended period."
+        },
+        {
+          "tactic": "Privilege Escalation",
+          "tactic_id": "TA0004",
+          "context": "Abusing existing access or exploiting trust to gain access to systems or data beyond authorised scope."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Using legitimate credentials and normal work patterns to avoid triggering security alerts or DLP controls."
+        },
+        {
+          "tactic": "Exfiltration",
+          "tactic_id": "TA0010",
+          "context": "Transferring data via personal email, removable media, cloud storage, or other channels outside corporate monitoring."
+        },
+        {
+          "tactic": "Impact",
+          "tactic_id": "TA0040",
+          "context": "Sabotaging systems, deleting data, or exposing sensitive information, whether through malice or negligence."
+        }
+      ]
+    },
+    {
+      "id": "cat-017",
+      "name": "Malware (Generalised)",
+      "description": "Software designed to disrupt, damage, or gain unauthorised access. Includes trojans, loaders, RATs, spyware, info-stealers, and botnet agents.",
+      "common-attack-stages": [
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Delivering malware via phishing, drive-by downloads, malvertising, or exploitation of vulnerable services."
+        },
+        {
+          "tactic": "Execution",
+          "tactic_id": "TA0002",
+          "context": "Executing malicious payloads on victim systems through user interaction or automated exploitation."
+        },
+        {
+          "tactic": "Persistence",
+          "tactic_id": "TA0003",
+          "context": "Installing mechanisms to survive reboots and maintain presence, such as registry modifications, services, or boot kits."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Employing packing, obfuscation, polymorphism, and process injection to evade antivirus and EDR detection."
+        },
+        {
+          "tactic": "Command and Control",
+          "tactic_id": "TA0011",
+          "context": "Communicating with attacker infrastructure for command execution, updates, and data transfer."
+        },
+        {
+          "tactic": "Impact",
+          "tactic_id": "TA0040",
+          "context": "Disrupting system operations, corrupting data, or enabling further attack objectives."
+        }
+      ]
+    },
+    {
+      "id": "cat-018",
+      "name": "Info-Stealer Campaigns",
+      "description": "Commodity malware designed specifically to harvest credentials, browser cookies, crypto wallets, and session tokens for resale on dark markets. Major enabler of downstream compromise.",
+      "common-attack-stages": [
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Distributing info-stealers via malvertising, SEO poisoning, cracked software, phishing emails, or social media lures."
+        },
+        {
+          "tactic": "Execution",
+          "tactic_id": "TA0002",
+          "context": "Executing the stealer payload, often via deceptive installers or script-based loaders."
+        },
+        {
+          "tactic": "Credential Access",
+          "tactic_id": "TA0006",
+          "context": "Harvesting stored passwords, browser cookies, session tokens, crypto wallet data, and autofill information."
+        },
+        {
+          "tactic": "Collection",
+          "tactic_id": "TA0009",
+          "context": "Aggregating stolen credential logs and session data for packaging."
+        },
+        {
+          "tactic": "Exfiltration",
+          "tactic_id": "TA0010",
+          "context": "Transmitting harvested data to attacker infrastructure, often via Telegram bots or dedicated C2 panels."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Using short-lived, polymorphic payloads and legitimate hosting to evade detection and takedown."
+        }
+      ]
+    },
+    {
+      "id": "cat-019",
+      "name": "Cryptojacking",
+      "description": "Unauthorised use of computing resources (often cloud workloads or containers) to mine cryptocurrency.",
+      "common-attack-stages": [
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Exploiting misconfigured containers, exposed APIs, or compromised credentials to gain access to compute resources."
+        },
+        {
+          "tactic": "Execution",
+          "tactic_id": "TA0002",
+          "context": "Deploying cryptocurrency mining software on compromised hosts or cloud instances."
+        },
+        {
+          "tactic": "Persistence",
+          "tactic_id": "TA0003",
+          "context": "Embedding miners in container images, cron jobs, or auto-scaling configurations to maintain mining operations."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Throttling CPU usage, using process name masquerading, and killing competing miners to avoid detection."
+        },
+        {
+          "tactic": "Impact",
+          "tactic_id": "TA0040",
+          "context": "Consuming computational resources, increasing cloud costs, and degrading performance of legitimate workloads."
+        }
+      ]
+    },
+    {
+      "id": "cat-020",
+      "name": "Operational Technology (OT) / ICS Attacks",
+      "description": "Targeting industrial control systems, critical infrastructure, or manufacturing environments. May involve IT-to-OT pivoting.",
+      "common-attack-stages": [
+        {
+          "tactic": "Reconnaissance",
+          "tactic_id": "TA0043",
+          "context": "Mapping IT/OT network boundaries, identifying SCADA/ICS assets, and researching industrial protocols and vendor systems."
+        },
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Compromising IT network assets as a stepping stone, or exploiting internet-exposed OT devices and remote access solutions."
+        },
+        {
+          "tactic": "Lateral Movement",
+          "tactic_id": "TA0008",
+          "context": "Pivoting from the IT network into OT/ICS segments through poorly segmented network boundaries."
+        },
+        {
+          "tactic": "Discovery",
+          "tactic_id": "TA0007",
+          "context": "Enumerating PLCs, RTUs, HMIs, and engineering workstations to understand the control environment."
+        },
+        {
+          "tactic": "Collection",
+          "tactic_id": "TA0009",
+          "context": "Gathering process data, engineering schematics, and configuration files from OT environments."
+        },
+        {
+          "tactic": "Execution",
+          "tactic_id": "TA0002",
+          "context": "Deploying ICS-specific malware or issuing rogue commands to programmable controllers."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Masquerading as legitimate engineering traffic and manipulating historian data to conceal attack activity."
+        },
+        {
+          "tactic": "Impact",
+          "tactic_id": "TA0040",
+          "context": "Disrupting industrial processes, causing safety incidents, or damaging physical equipment through manipulated control logic."
+        }
+      ]
+    },
+    {
+      "id": "cat-021",
+      "name": "IoT Exploitation",
+      "description": "Compromise of insecure Internet of Things devices for botnets, surveillance, or lateral movement.",
+      "common-attack-stages": [
+        {
+          "tactic": "Reconnaissance",
+          "tactic_id": "TA0043",
+          "context": "Scanning for exposed IoT devices using default credentials, known firmware vulnerabilities, and weak protocols."
+        },
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Exploiting default credentials, unpatched firmware, or insecure management interfaces to compromise IoT devices."
+        },
+        {
+          "tactic": "Execution",
+          "tactic_id": "TA0002",
+          "context": "Deploying botnet agents, surveillance implants, or proxy software on compromised devices."
+        },
+        {
+          "tactic": "Persistence",
+          "tactic_id": "TA0003",
+          "context": "Flashing modified firmware or embedding persistent malware that survives device reboots."
+        },
+        {
+          "tactic": "Lateral Movement",
+          "tactic_id": "TA0008",
+          "context": "Using compromised IoT devices as pivot points to access internal network segments."
+        },
+        {
+          "tactic": "Command and Control",
+          "tactic_id": "TA0011",
+          "context": "Enrolling compromised devices into botnet infrastructure for coordinated attacks or proxy services."
+        },
+        {
+          "tactic": "Impact",
+          "tactic_id": "TA0040",
+          "context": "Using compromised device fleets for DDoS attacks, credential stuffing, or surveillance operations."
+        }
+      ]
+    },
+    {
+      "id": "cat-022",
+      "name": "Deepfake & AI-Enabled Fraud",
+      "description": "Use of AI-generated voice/video impersonation for financial fraud, executive impersonation, or social engineering escalation.",
+      "common-attack-stages": [
+        {
+          "tactic": "Reconnaissance",
+          "tactic_id": "TA0043",
+          "context": "Collecting voice samples, video footage, and behavioural patterns of impersonation targets from public sources."
+        },
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Using AI-generated voice or video to impersonate trusted individuals in real-time calls or pre-recorded messages."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Generating highly convincing synthetic media that bypasses human verification and voice-based authentication systems."
+        },
+        {
+          "tactic": "Impact",
+          "tactic_id": "TA0040",
+          "context": "Inducing fraudulent financial transactions, authorising illegitimate actions, or manipulating decision-makers."
+        }
+      ]
+    },
+    {
+      "id": "cat-023",
+      "name": "Financial System Manipulation",
+      "description": "Attacks targeting payment platforms, trading systems, SWIFT infrastructure, or digital assets. Includes crypto exchange compromise.",
+      "common-attack-stages": [
+        {
+          "tactic": "Reconnaissance",
+          "tactic_id": "TA0043",
+          "context": "Researching target financial systems, payment workflows, trading platforms, and blockchain infrastructure."
+        },
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Compromising financial platform credentials, exploiting application vulnerabilities, or social engineering operations staff."
+        },
+        {
+          "tactic": "Privilege Escalation",
+          "tactic_id": "TA0004",
+          "context": "Escalating access to transaction approval systems, admin consoles, or smart contract management interfaces."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Manipulating transaction logs, modifying audit trails, and timing attacks to coincide with high-volume periods."
+        },
+        {
+          "tactic": "Collection",
+          "tactic_id": "TA0009",
+          "context": "Gathering financial data, private keys, transaction patterns, and account information."
+        },
+        {
+          "tactic": "Impact",
+          "tactic_id": "TA0040",
+          "context": "Executing fraudulent transactions, draining wallets, manipulating trades, or disrupting payment processing."
+        }
+      ]
+    },
+    {
+      "id": "cat-024",
+      "name": "Web Application Attacks",
+      "description": "Exploitation of application vulnerabilities such as SQL injection, XSS, SSRF, RCE, and authentication bypass.",
+      "common-attack-stages": [
+        {
+          "tactic": "Reconnaissance",
+          "tactic_id": "TA0043",
+          "context": "Scanning web applications for input validation flaws, exposed admin panels, and technology stack fingerprinting."
+        },
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Exploiting web application vulnerabilities (SQLi, RCE, authentication bypass) to gain unauthorised access."
+        },
+        {
+          "tactic": "Execution",
+          "tactic_id": "TA0002",
+          "context": "Achieving remote code execution through injection flaws, deserialisation vulnerabilities, or uploaded web shells."
+        },
+        {
+          "tactic": "Credential Access",
+          "tactic_id": "TA0006",
+          "context": "Extracting credentials from databases via SQL injection or accessing stored secrets through SSRF."
+        },
+        {
+          "tactic": "Privilege Escalation",
+          "tactic_id": "TA0004",
+          "context": "Exploiting authentication bypass or insecure direct object references to access administrative functions."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Obfuscating payloads to bypass WAF rules, using encoded injection techniques, and operating through legitimate HTTP traffic."
+        },
+        {
+          "tactic": "Collection",
+          "tactic_id": "TA0009",
+          "context": "Extracting sensitive data from application databases, file systems, and connected backend services."
+        }
+      ]
+    },
+    {
+      "id": "cat-025",
+      "name": "Business Logic Abuse",
+      "description": "Manipulation of legitimate workflows (refund abuse, API chaining, privilege escalation via logic flaws) without necessarily exploiting technical vulnerabilities.",
+      "common-attack-stages": [
+        {
+          "tactic": "Reconnaissance",
+          "tactic_id": "TA0043",
+          "context": "Analysing application workflows, business processes, and API sequences to identify exploitable logic assumptions."
+        },
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Using legitimate user accounts or registering new accounts to interact with target applications."
+        },
+        {
+          "tactic": "Privilege Escalation",
+          "tactic_id": "TA0004",
+          "context": "Exploiting logic flaws to access functions, data, or privileges beyond the intended user scope."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Operating entirely within legitimate application parameters, making detection through traditional security controls extremely difficult."
+        },
+        {
+          "tactic": "Impact",
+          "tactic_id": "TA0040",
+          "context": "Causing financial losses through refund abuse, inventory manipulation, or unauthorised transactions via logic exploitation."
+        }
+      ]
+    },
+    {
+      "id": "cat-026",
+      "name": "Destructive Attacks (Wipers)",
+      "description": "Malware designed to permanently destroy data or render systems inoperable, often geopolitically motivated.",
+      "common-attack-stages": [
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Gaining entry through supply chain compromise, credential theft, or exploitation of internet-facing services."
+        },
+        {
+          "tactic": "Execution",
+          "tactic_id": "TA0002",
+          "context": "Deploying wiper malware designed to overwrite or corrupt critical data and system components."
+        },
+        {
+          "tactic": "Privilege Escalation",
+          "tactic_id": "TA0004",
+          "context": "Escalating to administrative privileges required to access and destroy critical systems and data at scale."
+        },
+        {
+          "tactic": "Lateral Movement",
+          "tactic_id": "TA0008",
+          "context": "Propagating through the network to maximise the destructive reach before triggering the wiper payload."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Disguising wiper malware as ransomware or legitimate tools to delay response until maximum damage is achieved."
+        },
+        {
+          "tactic": "Impact",
+          "tactic_id": "TA0040",
+          "context": "Permanently destroying data, corrupting boot records, and rendering systems inoperable."
+        }
+      ]
+    },
+    {
+      "id": "cat-027",
+      "name": "Hybrid Influence Operations",
+      "description": "Combined cyber intrusion and information warfare campaigns designed to influence public opinion, elections, or market behaviour.",
+      "common-attack-stages": [
+        {
+          "tactic": "Reconnaissance",
+          "tactic_id": "TA0043",
+          "context": "Identifying target audiences, media ecosystems, political fault lines, and information channels susceptible to manipulation."
+        },
+        {
+          "tactic": "Initial Access",
+          "tactic_id": "TA0001",
+          "context": "Compromising media outlets, social media accounts, or government systems to obtain material for disinformation campaigns."
+        },
+        {
+          "tactic": "Collection",
+          "tactic_id": "TA0009",
+          "context": "Stealing communications, documents, and data that can be weaponised or selectively released for maximum impact."
+        },
+        {
+          "tactic": "Defence Evasion",
+          "tactic_id": "TA0005",
+          "context": "Using fake personas, bot networks, and laundered narratives to obscure attribution and amplify disinformation."
+        },
+        {
+          "tactic": "Exfiltration",
+          "tactic_id": "TA0010",
+          "context": "Leaking stolen data through intermediary platforms or media channels to control the narrative."
+        },
+        {
+          "tactic": "Impact",
+          "tactic_id": "TA0040",
+          "context": "Undermining public trust, manipulating elections, influencing policy decisions, or destabilising markets through coordinated information operations."
+        }
+      ]
+    }
+  ]
+}
