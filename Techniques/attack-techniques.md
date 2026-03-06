@@ -1,12 +1,11 @@
-# MITRE ATT&CK Enterprise — Technique Reference
-
-**ATT&CK Version:** 2.0  
-**Generated:** 04 March 2026, 16:26  
-**Total Unique Techniques:** 691 (216 parent, 475 sub-techniques)  
-**Source:** `mitreattack/enterprise/techniques.json`
-**Author:** jasonlayton.com
-
 ---
+ATT&CK Version: 18.1  
+Total Unique Techniques: 691 (216 parent, 475 sub-techniques)  
+Source: `mitreattack/enterprise/techniques.json`
+Author: jasonlayton.com
+---
+
+# MITRE ATT&CK Enterprise — Technique Reference
 
 ## Table of Contents
 
