@@ -1,7 +1,6 @@
 ---
-ATT&CK Version: 18.1  
-Total Unique Techniques: 691 (216 parent, 475 sub-techniques)  
-Source: `mitreattack/enterprise/techniques.json`
+ATT&CK Version: v18.1
+Total Techniques: 691 (216 parent, 475 sub-techniques)
 Author: jasonlayton.com
 ---
 
